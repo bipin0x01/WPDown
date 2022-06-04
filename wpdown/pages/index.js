@@ -154,17 +154,21 @@ export default function Home() {
               <>
                 <div className="theme-section">
                   <h3 className="ml-4 mt-4 text-left text-md font-bold text-gray-500 dark:text-gray-400">
-                    <div className="theme-name">Theme Name : Wpdown Theme</div>
+                    <div className="theme-name">
+                      Theme Name : {theme_info.theme}
+                    </div>
                     <br />
                     <div className="theme-version">
-                      version: <span>1.0.0</span>
+                      version: <span>{theme_info.version}</span>
                     </div>
                     <br />
                     <div className="theme-author">
                       Author:{" "}
                       <span>
-                        <Link href="#">
-                          <a className="hover:text-blue-400">Bipin Thapa</a>
+                        <Link href={theme_info.authorLink}>
+                          <a className="hover:text-blue-400 font-bold">
+                            {theme_info.author}
+                          </a>
                         </Link>
                       </span>
                     </div>
