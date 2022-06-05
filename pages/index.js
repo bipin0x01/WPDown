@@ -14,8 +14,8 @@ export default function Home() {
     setUrl(search_url);
     setLoading(true);
     setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+      setLoading(true);
+    }, 10000);
   };
   const plugins = [
     {
