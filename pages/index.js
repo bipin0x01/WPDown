@@ -1,10 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Home() {
-  const router = useRouter();
-
   const plugins = [
     {
       plugin_name: "Contact Form 7",
@@ -59,44 +57,47 @@ export default function Home() {
         </div>
       </div>
       <div className="z-0 flex main absolute inset-0 justify-center h-full w-full my-auto">
-        <div className="relative bg-slate-200 w-3/4 xl:w-halfscreen md:w-3/4 sm:w-3/4  h-screen/4 p-4 rounded-3xl place-self-center flex-row">
+        <div className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded-xl place-self-center flex-row">
           {/* Search Area */}
 
-          <div className="search-area flex flex-row gap-2 justify-center h-full items-center">
+          <div className="search-area bg-smooth-blue flex flex-row justify-center h-full items-center">
             {/* Search Box with Icon */}
             <div
-              className="search-box bg-white m-2 p-2 rounded-2xl w-3/5 shadow-lg hover:shadow-md transition duration-150 ease-in-out"
+              className="search-box border-white border-2 m-2 p-2 rounded-2xl w-3/5 sm:w-4/5 shadow-lg hover:shadow-md transition duration-150 ease-in-out"
               id="search-box"
             >
               {/* Text Input */}
-              <input
-                className="search-input form-control w-full focus:outline-none px-2 "
-                type="text"
-                placeholder="Enter the name of the website you want to inspect..."
-                id="search-input"
-                pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
-              />
+              <div className="search-input ">
+                <input
+                  className="search-input form-control w-full focus:outline-none px-2 bg-smooth-blue text-slate-300 font-bold"
+                  type="text"
+                  placeholder="https://"
+                  id="search-input"
+                  pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
+                />
+              </div>
             </div>
             {/* Search Button */}
             <div className="search-button w-auto ">
               <button
                 type="button"
-                className="search-btn text-blue-400 mx-3 px-4 py-2 font-bold rounded-3xl border-2 border-blue-300 flex flex-row leading-tight uppercase shadow-lg hover:shadow-md focus:outline-none focus:ring-0 transition duration-150 ease-in-out items-center"
+                className="search-btn text-white mx-3 px-4 py-2 font-bold rounded-3xl border-2 border-white flex flex-row leading-tight uppercase hover:text-smooth-blue hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out items-center"
               >
-                <div className="search-icon ">
+                <div className="search-icon hover:text-smooth-blue">
                   <svg
-                    className="fill-current text-gray-500 h-6 w-6 p-1 mr-1"
+                    className="fill-current text-white h-6 w-6 p-1 mr-1 hover:text-smooth-blue font-bold"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                   >
                     <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
                   </svg>
                 </div>
-                <div>
+                <div className="sm:block hidden">
                   <span>Search</span>
                 </div>
               </button>
             </div>
+            {/* Search button End */}
           </div>
 
           {/* Search Area End*/}
@@ -106,54 +107,41 @@ export default function Home() {
         </div> */}
       </div>
 
-      <div className=" flex main-bottom cointainer bg-slate-400 w-full rounded-t-3xl justify-center min-h-full max-h-fit h-fit">
-        <div className=" z-40 flex flex-col bg-slate-200 w-3/5 mt-40 rounded-t-3xl p-6">
+      <div className=" flex main-bottom text-slate-800 cointainer bg-blue-100 justify-center min-h-full max-h-fit h-fit">
+        <div className=" z-40 flex flex-col container bg-white shadow-lg shadow-alpha items-center mt-40 p-20">
           {/* Centered H1 Title */}
-          <h2 className=" results-title mb-4 text-center underline underline-offset-8 font-bold text-3xl ">
+          <h2 className=" results-title mb-4 text-center font-bold text-3xl ">
             Here's the Intel we've gathered for you!
           </h2>
           {/* Centered H1 Title End */}
 
-          {/* Results Tabbed Section */}
-          <div className="text-2xl font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul className="flex flex-wrap">
-              <li className="mr-2">
-                <Link href="#theme">
-                  <a
-                    className={`inline-block p-4 rounded-t-lg border-b-2 border-transparent ${
-                      router.asPath === "/#theme"
-                        ? "underline underline-offset-8 font-bold"
-                        : ""
-                    }`}
-                  >
-                    Theme
-                  </a>
-                </Link>
-              </li>
-              <li className="mr-2">
-                <Link href="#plugins">
-                  <a
-                    className={`inline-block p-4 rounded-t-lg border-b-2 border-transparent ${
-                      router.asPath === "/#plugins"
-                        ? "underline underline-offset-8 font-bold"
-                        : ""
-                    }`}
-                  >
-                    Plugins
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-          {/* Results Tabbed Section End */}
           <hr />
           {/* Results Section */}
-          <div className="results-section">
-            {/* Theme Section */}
-            {router.asPath === "/#theme" && (
-              <>
-                <div className="theme-section">
-                  <h3 className="ml-4 mt-4 text-left text-md font-bold text-gray-500 dark:text-gray-400">
+          <div className="results-container p-4">
+            {/* Theme Section */}{" "}
+            <>
+              <div className="theme-section  flex flex-col lg:flex-row gap-4">
+                {/* Theme Section Left */}
+                <div className="theme-section-left flex flex-row justify-center ">
+                  <div className="theme-screenshot p-4 m-4 ">
+                    <Image
+                      src={
+                        "https://res.cloudinary.com/kaji/image/fetch/" +
+                        theme_info.screenshot
+                      }
+                      alt="theme screenshot"
+                      className="w-full h-full"
+                      height={220}
+                      width={400}
+                    />
+                  </div>
+                </div>
+                {/* Theme Section Left End */}
+
+                {/* Theme Section Right */}
+
+                <div className="theme-section-right w-full">
+                  <h3 className="ml-4 mt-4 text-left text-md font-bold ">
                     <div className="theme-name">
                       Theme Name : {theme_info.theme}
                     </div>
@@ -173,27 +161,35 @@ export default function Home() {
                       </span>
                     </div>
                     <br />
-                    <div className="theme-tags">
-                      <div className="tags-group flex flex-row max-w-sm">
+                    <div className="theme-tags flex flex-row">
+                      <div className="tags-group flex flex-row">
                         <div className="tag-title">Tags: </div>
-                        {theme_info.tags.map((tag, index) => (
-                          <div
-                            className="tag mx-2 px-3 rounded-xl border border-blue-400 border-2 hover:bg-blue-400 hover:text-white  text-sm"
-                            key={index}
-                          >
-                            <Link href="#">
-                              <a className="hover:text-white">{tag}</a>
-                            </Link>
-                          </div>
-                        ))}
+                        <div className="tags-list flex flex-row">
+                          {theme_info.tags.map((tag, index) => (
+                            <div
+                              className="hover:border-0 hover:bg-smooth-blue hover:text-white tag mx-2 px-3 rounded-xl min-w-fit text-sm"
+                              key={index}
+                            >
+                              <Link href="#">
+                                <a className="p-1 my-1">{tag}</a>
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     <br />
                   </h3>
                 </div>
-              </>
-            )}
+                {/* Theme Section Right End */}
+              </div>
+            </>
           </div>
+          {/* Plugins Section */}
+          <div className="plugins-container p-4">
+            <h3>Plugins</h3>
+          </div>
+          {/* Plugins Section End */}
         </div>
       </div>
     </div>

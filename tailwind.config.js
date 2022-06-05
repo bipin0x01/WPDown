@@ -21,6 +21,9 @@ module.exports = {
       fontFamily: {
         "im-fell": ['"IM Fell DW Pica"', "serif"],
       },
+      colors: {
+        "smooth-blue": "#2C4F7A",
+      },
     },
   },
   plugins: [],
