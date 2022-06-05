@@ -23,6 +23,7 @@ module.exports = {
       },
       colors: {
         "smooth-blue": "#2C4F7A",
+        custom: "#3282B8",
       },
     },
   },

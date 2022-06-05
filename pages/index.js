@@ -1,8 +1,22 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import Loader from "../src/components/Loader";
 
 export default function Home() {
+  const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [search_url, setSearchUrl] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUrl(search_url);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
   const plugins = [
     {
       plugin_name: "Contact Form 7",
@@ -57,73 +71,75 @@ export default function Home() {
         </div>
       </div>
       <div className="z-0 flex main absolute inset-0 justify-center h-full w-full my-auto">
-        <div className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded-xl place-self-center flex-row">
-          {/* Search Area */}
-
-          <div className="search-area bg-smooth-blue flex flex-row justify-center h-full items-center">
-            {/* Search Box with Icon */}
-            <div
-              className="search-box border-white border-2 m-2 p-2 rounded-2xl w-3/5 sm:w-4/5 shadow-lg hover:shadow-md transition duration-150 ease-in-out"
-              id="search-box"
-            >
-              {/* Text Input */}
-              <div className="search-input ">
-                <input
-                  className="search-input form-control w-full focus:outline-none px-2 bg-smooth-blue text-slate-300 font-bold"
-                  type="text"
-                  placeholder="https://"
-                  id="search-input"
-                  pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
-                />
-              </div>
-            </div>
-            {/* Search Button */}
-            <div className="search-button w-auto ">
-              <button
-                type="button"
-                className="search-btn text-white mx-3 px-4 py-2 font-bold rounded-3xl border-2 border-white flex flex-row leading-tight uppercase hover:text-smooth-blue hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out items-center"
-              >
-                <div className="search-icon hover:text-smooth-blue">
-                  <svg
-                    className="fill-current text-white h-6 w-6 p-1 mr-1 hover:text-smooth-blue font-bold"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
+        <form
+          onSubmit={handleSubmit}
+          className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded-xl place-self-center flex-row"
+        >
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              {/* Search Area */}
+              <div className="search-area bg-smooth-blue flex flex-row justify-center h-full items-center">
+                {/* Search Box with Icon */}
+                <div
+                  className="search-box border-white border-2 m-2 p-2 rounded-2xl w-3/5 sm:w-4/5 shadow-lg hover:shadow-md transition duration-150 ease-in-out"
+                  id="search-box"
+                >
+                  {/* Text Input */}
+                  <div className="search-input ">
+                    <input
+                      className="search-input form-control w-full focus:outline-none px-2 bg-smooth-blue text-slate-300 font-bold"
+                      type="text"
+                      placeholder="https://"
+                      id="search-input"
+                      pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
+                      onSubmit={(e) => {
+                        setSearchUrl(e.target.value);
+                      }}
+                      autoComplete="off"
+                    />
+                  </div>
+                </div>
+                {/* Search Button */}
+                <div className="search-button w-auto ">
+                  <button
+                    type="button"
+                    className="search-btn text-white mx-3 px-4 py-2 font-bold rounded-3xl border-2 border-white flex flex-row leading-tight uppercase hover:text-smooth-blue hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out items-center"
                   >
-                    <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                  </svg>
+                    <div>
+                      <span>Search</span>
+                    </div>
+                  </button>
                 </div>
-                <div className="sm:block hidden">
-                  <span>Search</span>
-                </div>
-              </button>
-            </div>
-            {/* Search button End */}
-          </div>
-
-          {/* Search Area End*/}
-        </div>
-        {/* <div className="absolute bg-slate-200 w-halfscreen h-screen/4 p-4 rounded-xl place-self-center">
-          sad
-        </div> */}
+                {/* Search button End */}
+              </div>
+              {/* Search Area End*/}
+            </>
+          )}
+        </form>
       </div>
 
-      <div className=" flex main-bottom text-slate-800 cointainer bg-blue-100 justify-center min-h-full max-h-fit h-fit">
-        <div className=" z-40 flex flex-col container bg-white shadow-lg shadow-alpha items-center mt-40 p-20">
-          {/* Centered H1 Title */}
-          <h2 className=" results-title mb-4 text-center font-bold text-3xl ">
-            RESULTS
-          </h2>
-          {/* Centered H1 Title End */}
+      <div className=" flex main-bottom bg-slate-200 text-white cointainer justify-center min-h-full max-h-fit h-fit">
+        <div className=" z-40 flex flex-col container bg-white text-smooth-blue shadow-xl shadow-slate-300 items-center mt-40 p-10">
+          <div className="headline bg-smooth-blue text-white ">
+            {/* Centered H1 Title */}
+            <div className=" results-title my-2 mx-4 text-left font-bold text-xl ">
+              Results for {url}
+            </div>
+            {/* Centered H1 Title End */}
+          </div>
+          <div className="border border-2 bg-black w-4/5"></div>
 
           <hr />
           {/* Results Section */}
-          <div className="results-container p-4">
+          <div className="results-container  p-4">
             {/* Theme Section */}{" "}
             <>
               <div className="theme-section  flex flex-col lg:flex-row gap-4">
                 {/* Theme Section Left */}
                 <div className="theme-section-left flex flex-row justify-center ">
-                  <div className="theme-screenshot p-4 m-4 ">
+                  <div className="theme-screenshot w-full p-2">
                     <Image
                       src={
                         "https://res.cloudinary.com/kaji/image/fetch/" +
@@ -131,8 +147,8 @@ export default function Home() {
                       }
                       alt="theme screenshot"
                       className="w-full h-full"
-                      height={220}
-                      width={400}
+                      height={350}
+                      width={500}
                     />
                   </div>
                 </div>
@@ -141,33 +157,39 @@ export default function Home() {
                 {/* Theme Section Right */}
 
                 <div className="theme-section-right w-full">
-                  <h3 className="ml-4 mt-4 text-left text-md font-bold ">
-                    <div className="theme-name">
-                      Theme Name : {theme_info.theme}
+                  <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
+                    <div className="theme-name ">
+                      Theme Name :{" "}
+                      <span className="font-medium text-black ml-2">
+                        {theme_info.theme}
+                      </span>
                     </div>
                     <br />
                     <div className="theme-version">
-                      version: <span>{theme_info.version}</span>
+                      version:{" "}
+                      <span className="font-medium text-black ml-2">
+                        {theme_info.version}
+                      </span>
                     </div>
                     <br />
                     <div className="theme-author">
                       Author:{" "}
-                      <span>
+                      <span className="font-medium text-black ml-2">
                         <Link href={theme_info.authorLink}>
-                          <a className="hover:text-blue-400 font-bold">
+                          <a className="hover:text-blue-400">
                             {theme_info.author}
                           </a>
                         </Link>
                       </span>
                     </div>
                     <br />
-                    <div className="theme-tags flex flex-row">
+                    <div className="theme-tags flex flex-row ">
                       <div className="tags-group flex flex-row">
-                        <div className="tag-title">Tags: </div>
-                        <div className="tags-list flex flex-row">
+                        <div className="tag-title ">Tags: </div>
+                        <div className="tags-list ml-2 flex flex-row font-medium">
                           {theme_info.tags.map((tag, index) => (
                             <div
-                              className="hover:border-0 hover:bg-smooth-blue hover:text-white tag mx-2 px-3 rounded-xl min-w-fit text-sm"
+                              className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
                               key={index}
                             >
                               <Link href="#">
@@ -185,10 +207,14 @@ export default function Home() {
               </div>
             </>
           </div>
+
+          {/* Horizontal Line */}
           {/* Plugins Section */}
-          <div className="plugins-container p-4">
-            <h3>Plugins</h3>
+          <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
+            Plugin Details {url}
           </div>
+          <div className="border border-2 bg-black -mt-2 w-4/5"></div>
+
           {/* Plugins Section End */}
         </div>
       </div>
