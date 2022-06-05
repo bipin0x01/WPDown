@@ -124,79 +124,84 @@ export default function Home() {
         <div className=" z-40 flex flex-col container bg-white text-smooth-blue shadow-xl shadow-slate-300 items-center mt-40 p-10">
           <div className="headline bg-smooth-blue text-white "></div>
           {/* Results Section */}
-          {/* Theme Section */}{" "}
+          {/* Theme Section */}
           <>
-            <div className="theme-section border-2 shadow-lg shadow-slate-200 my-4 p-2 flex flex-col lg:flex-row w-3/4">
+            <div className="theme-section border-2 shadow-lg shadow-slate-200 my-4 p-2 w-3/4">
               {/* Theme Section Left */}
 
-              <div className="theme-section-left flex flex-row justify-center ">
-                <div className="theme-screenshot w-full p-2">
-                  <Image
-                    src={
-                      "https://res.cloudinary.com/kaji/image/fetch/" +
-                      theme_info.screenshot
-                    }
-                    alt="theme screenshot"
-                    className="w-full h-full"
-                    height={350}
-                    width={500}
-                  />
-                </div>
+              <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
+                Theme Details
               </div>
-              {/* Theme Section Left End */}
+              <theme className=" flex flex-col lg:flex-row">
+                <div className="theme-section-left flex flex-row justify-center ">
+                  <div className="theme-screenshot w-full p-2">
+                    <Image
+                      src={
+                        "https://res.cloudinary.com/kaji/image/fetch/" +
+                        theme_info.screenshot
+                      }
+                      alt="theme screenshot"
+                      className="w-full h-full"
+                      height={350}
+                      width={500}
+                    />
+                  </div>
+                </div>
+                {/* Theme Section Left End */}
 
-              {/* Theme Section Right */}
+                {/* Theme Section Right */}
 
-              <div className="theme-section-right w-full ">
-                <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
-                  <div className="theme-name mb-3">
-                    Theme Name :{" "}
-                    <span className="font-medium text-black ml-2">
-                      {theme_info.theme}
-                    </span>
-                  </div>
-                  <div className="theme-version mb-3">
-                    version:{" "}
-                    <span className="font-medium text-black ml-2">
-                      {theme_info.version}
-                    </span>
-                  </div>
-                  <div className="theme-author mb-3">
-                    Author:{" "}
-                    <span className="font-medium text-black ml-2">
-                      <Link href={theme_info.authorLink}>
-                        <a className="hover:text-blue-400">
-                          {theme_info.author}
-                        </a>
-                      </Link>
-                    </span>
-                  </div>
-                  <div className="theme-tags flex flex-row overflow-hidden">
-                    <div className="tags-group flex flex-row">
-                      <div className="tag-title ">Tags: </div>
-                      <div className="tags-list ml-2 flex flex-row font-medium">
-                        {theme_info.tags.map((tag, index) => (
-                          <div
-                            className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
-                            key={index}
-                          >
-                            <Link href="#">
-                              <a className="p-1 my-1">{tag}</a>
-                            </Link>
-                          </div>
-                        ))}
+                <div className="theme-section-right w-full ">
+                  <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
+                    <div className="theme-name mb-3">
+                      Theme Name :{" "}
+                      <span className="font-medium text-black ml-2">
+                        {theme_info.theme}
+                      </span>
+                    </div>
+                    <div className="theme-version mb-3">
+                      version:{" "}
+                      <span className="font-medium text-black ml-2">
+                        {theme_info.version}
+                      </span>
+                    </div>
+                    <div className="theme-author mb-3">
+                      Author:{" "}
+                      <span className="font-medium text-black ml-2">
+                        <Link href={theme_info.authorLink}>
+                          <a className="hover:text-smooth-blue">
+                            {theme_info.author}
+                          </a>
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="theme-tags flex flex-row overflow-hidden">
+                      <div className="tags-group flex flex-row">
+                        <div className="tag-title ">Tags: </div>
+                        <div className="tags-list ml-2 flex flex-row font-medium">
+                          {theme_info.tags.map((tag, index) => (
+                            <div
+                              className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
+                              key={index}
+                            >
+                              <Link href="#">
+                                <a className="p-1 my-1">{tag}</a>
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* Download Button */}
-                  <div className="download-button flex flex-row mt-6">
-                    <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white mx-2 px-4 py-2 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                      <span>Download</span>
-                    </button>
-                  </div>
-                </h3>
-              </div>
-              {/* Theme Section Right End */}
+                    {/* Download Button */}
+                    <div className="download-button flex flex-row mt-6">
+                      <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white mx-2 px-4 py-2 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                        <span>Download</span>
+                      </button>
+                    </div>
+                  </h3>
+                </div>
+                {/* Theme Section Right End */}
+              </theme>
             </div>
           </>
           {/* Horizontal Line */}
@@ -204,7 +209,7 @@ export default function Home() {
           <div className="plugin-container border-2 shadow-lg shadow-slate-200 my-4 p-2 w-3/4">
             {/* Plugins Section */}
             <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
-              Plugin Details {url}
+              Plugin Details
             </div>
             {plugins.map((plugin, index) => (
               <>
@@ -252,11 +257,32 @@ export default function Home() {
                       </h3>
                     </div>
                     {/* Plugin Section Bottom End */}
+
+                    {/* Plugin Download Section */}
+                    <div className="plugin-download-section flex flex-col justify-center">
+                      <div className="download-button">
+                        <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white m-3 p-3 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                          {/* Download Icon */}
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            {/* File download icon */}
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </plugin>
+                {/* Don't show line at last */}
+                {index !== plugins.length - 1 && (
+                  <div className="border border-2 bg-black mx-4"></div>
+                )}
               </>
             ))}
-            ;<div className="border border-2 bg-black mx-4"></div>
             {/* Plugins Section End */}
           </div>
           {/* Plugin Container End */}
