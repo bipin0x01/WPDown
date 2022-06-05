@@ -122,100 +122,144 @@ export default function Home() {
 
       <div className=" flex main-bottom bg-slate-200 text-white cointainer justify-center min-h-full max-h-fit h-fit">
         <div className=" z-40 flex flex-col container bg-white text-smooth-blue shadow-xl shadow-slate-300 items-center mt-40 p-10">
-          <div className="headline bg-smooth-blue text-white ">
-            {/* Centered H1 Title */}
-            <div className=" results-title my-2 mx-4 text-left font-bold text-xl ">
-              Results for {url}
-            </div>
-            {/* Centered H1 Title End */}
-          </div>
-          <div className="border border-2 bg-black w-4/5"></div>
-
-          <hr />
+          <div className="headline bg-smooth-blue text-white "></div>
           {/* Results Section */}
-          <div className="results-container  p-4">
-            {/* Theme Section */}{" "}
-            <>
-              <div className="theme-section  flex flex-col lg:flex-row gap-4">
-                {/* Theme Section Left */}
-                <div className="theme-section-left flex flex-row justify-center ">
-                  <div className="theme-screenshot w-full p-2">
-                    <Image
-                      src={
-                        "https://res.cloudinary.com/kaji/image/fetch/" +
-                        theme_info.screenshot
-                      }
-                      alt="theme screenshot"
-                      className="w-full h-full"
-                      height={350}
-                      width={500}
-                    />
-                  </div>
+          {/* Theme Section */}{" "}
+          <>
+            <div className="theme-section border-2 shadow-lg shadow-slate-200 my-4 p-2 flex flex-col lg:flex-row w-3/4">
+              {/* Theme Section Left */}
+
+              <div className="theme-section-left flex flex-row justify-center ">
+                <div className="theme-screenshot w-full p-2">
+                  <Image
+                    src={
+                      "https://res.cloudinary.com/kaji/image/fetch/" +
+                      theme_info.screenshot
+                    }
+                    alt="theme screenshot"
+                    className="w-full h-full"
+                    height={350}
+                    width={500}
+                  />
                 </div>
-                {/* Theme Section Left End */}
+              </div>
+              {/* Theme Section Left End */}
 
-                {/* Theme Section Right */}
+              {/* Theme Section Right */}
 
-                <div className="theme-section-right w-full">
-                  <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
-                    <div className="theme-name ">
-                      Theme Name :{" "}
-                      <span className="font-medium text-black ml-2">
-                        {theme_info.theme}
-                      </span>
-                    </div>
-                    <br />
-                    <div className="theme-version">
-                      version:{" "}
-                      <span className="font-medium text-black ml-2">
-                        {theme_info.version}
-                      </span>
-                    </div>
-                    <br />
-                    <div className="theme-author">
-                      Author:{" "}
-                      <span className="font-medium text-black ml-2">
-                        <Link href={theme_info.authorLink}>
-                          <a className="hover:text-blue-400">
-                            {theme_info.author}
-                          </a>
-                        </Link>
-                      </span>
-                    </div>
-                    <br />
-                    <div className="theme-tags flex flex-row ">
-                      <div className="tags-group flex flex-row">
-                        <div className="tag-title ">Tags: </div>
-                        <div className="tags-list ml-2 flex flex-row font-medium">
-                          {theme_info.tags.map((tag, index) => (
-                            <div
-                              className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
-                              key={index}
-                            >
-                              <Link href="#">
-                                <a className="p-1 my-1">{tag}</a>
-                              </Link>
-                            </div>
-                          ))}
-                        </div>
+              <div className="theme-section-right w-full ">
+                <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
+                  <div className="theme-name mb-3">
+                    Theme Name :{" "}
+                    <span className="font-medium text-black ml-2">
+                      {theme_info.theme}
+                    </span>
+                  </div>
+                  <div className="theme-version mb-3">
+                    version:{" "}
+                    <span className="font-medium text-black ml-2">
+                      {theme_info.version}
+                    </span>
+                  </div>
+                  <div className="theme-author mb-3">
+                    Author:{" "}
+                    <span className="font-medium text-black ml-2">
+                      <Link href={theme_info.authorLink}>
+                        <a className="hover:text-blue-400">
+                          {theme_info.author}
+                        </a>
+                      </Link>
+                    </span>
+                  </div>
+                  <div className="theme-tags flex flex-row overflow-hidden">
+                    <div className="tags-group flex flex-row">
+                      <div className="tag-title ">Tags: </div>
+                      <div className="tags-list ml-2 flex flex-row font-medium">
+                        {theme_info.tags.map((tag, index) => (
+                          <div
+                            className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
+                            key={index}
+                          >
+                            <Link href="#">
+                              <a className="p-1 my-1">{tag}</a>
+                            </Link>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                    <br />
-                  </h3>
-                </div>
-                {/* Theme Section Right End */}
+                  </div>
+                  {/* Download Button */}
+                  <div className="download-button flex flex-row mt-6">
+                    <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white mx-2 px-4 py-2 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                      <span>Download</span>
+                    </button>
+                  </div>
+                </h3>
               </div>
-            </>
-          </div>
-
+              {/* Theme Section Right End */}
+            </div>
+          </>
           {/* Horizontal Line */}
-          {/* Plugins Section */}
-          <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
-            Plugin Details {url}
-          </div>
-          <div className="border border-2 bg-black -mt-2 w-4/5"></div>
+          {/* Plugin Container */}
+          <div className="plugin-container border-2 shadow-lg shadow-slate-200 my-4 p-2 w-3/4">
+            {/* Plugins Section */}
+            <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
+              Plugin Details {url}
+            </div>
+            {plugins.map((plugin, index) => (
+              <>
+                <plugin className="flex flex-row justify-center w-full">
+                  {/* Plugin Numbering */}
+                  <div className="plugin-numbering  p-4 flex flex-row text-xl font-bold">
+                    {index + 1}
+                  </div>
+                  <div className="plugins-section flex flex-col sm:flex-row ">
+                    {/* Plugin Section Top */}
 
-          {/* Plugins Section End */}
+                    <div className="plugin-section-top justify-center flex flex-col">
+                      <div className="plugin-banner  h-fit">
+                        <Image
+                          src={
+                            "https://res.cloudinary.com/kaji/image/fetch/" +
+                            plugin.banner
+                          }
+                          alt="plugin-banner"
+                          className="w-full h-full"
+                          height={150}
+                          width={600}
+                          responsive={true}
+                        />
+                      </div>
+                    </div>
+                    {/* Plugin Section Top End */}
+
+                    {/* Plugin Section Bottom */}
+
+                    <div className="plugin-section-bottom w-full">
+                      <h3 className="m-4 text-left text-lg font-bold ">
+                        <div className="plugin-name mb-3">
+                          Plugin Name :{" "}
+                          <span className="font-medium text-black ml-2">
+                            {plugin.plugin_name}
+                          </span>
+                        </div>
+                        <div className="theme-version">
+                          Description:{" "}
+                          <span className="font-medium text-black ml-2">
+                            {plugin.desc}
+                          </span>
+                        </div>
+                      </h3>
+                    </div>
+                    {/* Plugin Section Bottom End */}
+                  </div>
+                </plugin>
+              </>
+            ))}
+            ;<div className="border border-2 bg-black mx-4"></div>
+            {/* Plugins Section End */}
+          </div>
+          {/* Plugin Container End */}
         </div>
       </div>
     </div>
