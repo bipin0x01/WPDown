@@ -14,8 +14,8 @@ export default function Home() {
     setUrl(search_url);
     setLoading(true);
     setTimeout(() => {
-      setLoading(true);
-    }, 10000);
+      setLoading(false);
+    }, 2000);
   };
   const plugins = [
     {
@@ -215,7 +215,7 @@ export default function Home() {
               <>
                 <plugin className="flex flex-row justify-center w-full">
                   {/* Plugin Numbering */}
-                  <div className="plugin-numbering  p-4 flex flex-row text-xl font-bold">
+                  <div className="plugin-numbering  p-4 flex flex-row text-xl font-bold items-center">
                     {index + 1}
                   </div>
                   <div className="plugins-section flex flex-col sm:flex-row ">
@@ -259,20 +259,35 @@ export default function Home() {
                     {/* Plugin Section Bottom End */}
 
                     {/* Plugin Download Section */}
-                    <div className="plugin-download-section flex flex-col justify-center">
-                      <div className="download-button">
-                        <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white m-3 p-3 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                          {/* Download Icon */}
-                          <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            {/* File download icon */}
-                          </svg>
+                    <div className="plugin-download-section flex flex-col justify-center bg-white">
+                      <div className="download-button ">
+                        <button
+                          data-tooltip-target="tooltip-plugin-download"
+                          type="button"
+                          className="download-btn relative text-sm bg-smooth-blue text-white font-bold p-5 m-5 rounded-3xl flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        >
+                          <Link href={plugin.download_link}>
+                            <a className="hover:text-smooth-blue">
+                              <Image
+                                src="/assets/img/icons/download_icon.svg"
+                                layout="fill"
+                                alt="download icon"
+                                className="w-5 h-5 bg-white rounded-full"
+                              />
+                            </a>
+                          </Link>
                         </button>
+                        {/* Tooltip */}
+                        <div
+                          id="tooltip-plugin-download"
+                          className="tooltip tooltip-plugin-download absolute top-0 left-0 w-64 bg-white p-4 text-sm font-bold rounded-lg shadow-lg"
+                        >
+                          <div className="tooltip-inner">
+                            <div className="tooltip-text">
+                              <span className="font-bold">Download Plugin</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
