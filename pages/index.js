@@ -73,7 +73,7 @@ export default function Home() {
       <div className="z-0 flex main absolute inset-0 justify-center h-full w-full my-auto">
         <form
           onSubmit={handleSubmit}
-          className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded-xl place-self-center flex-row"
+          className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded place-self-center flex-row  hover:shadow-md transition ease-in-out auto shadow-lg shadow-slate-400"
         >
           {loading ? (
             <Loader />
@@ -126,7 +126,7 @@ export default function Home() {
           {/* Results Section */}
           {/* Theme Section */}
           <>
-            <div className="theme-section border-2 shadow-lg shadow-slate-200 my-4 p-2 w-3/4">
+            <div className="theme-section border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 my-4 p-2 w-3/4">
               {/* Theme Section Left */}
 
               <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
@@ -206,7 +206,7 @@ export default function Home() {
           </>
           {/* Horizontal Line */}
           {/* Plugin Container */}
-          <div className="plugin-container border-2 shadow-lg shadow-slate-200 my-4 p-2 w-3/4">
+          <div className="plugin-container border-2 shadow-lg shadow-slate-200 hover:shadow-md transition ease-in-out auto  my-4 p-2 w-3/4">
             {/* Plugins Section */}
             <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
               Plugin Details
