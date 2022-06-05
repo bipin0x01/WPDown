@@ -111,7 +111,7 @@ export default function Home() {
         <div className=" z-40 flex flex-col container bg-white shadow-lg shadow-alpha items-center mt-40 p-20">
           {/* Centered H1 Title */}
           <h2 className=" results-title mb-4 text-center font-bold text-3xl ">
-            Here's the Intel we've gathered for you!
+            RESULTS
           </h2>
           {/* Centered H1 Title End */}
 
