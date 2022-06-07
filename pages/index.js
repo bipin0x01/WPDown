@@ -1,11 +1,15 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Loader from "../src/components/Loader";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+
+// Components Import
 import PluginSection from "../src/components/Main/PluginSection";
 import ThemeSection from "../src/components/Main/ThemeSection";
+import Header from "../src/components/Main/Header";
+import Footer from "../src/components/Main/Footer";
 
 // change value of search results to string
 // export async function getServerSideProps() {
@@ -83,26 +87,11 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="main-top cointainer h-halfscreen ">
-        <ToastContainer
-          position="top-center"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={true}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <div className="flex flex-col justify-center h-full ">
-          <h1 className="font-bold text-center font-im-fell m-auto">
-            <span className="sm:text-8xl text-5xl">WPDOWN</span>
-            <br />
-            <span className="sm:text-4xl text-2xl">Watcha Theme!</span>
-          </h1>
-        </div>
-      </div>
+      {/* Header */}
+      <Header />
+      {/* Header End */}
+      {/* Main Content */}
+      {/* Search Section */}
       <div
         className={`z-0 flex main absolute inset-0 justify-center h-full w-full my-auto`}
       >
@@ -158,7 +147,9 @@ export default function Home() {
           )}
         </form>
       </div>
+      {/* Search Section End */}
 
+      {/* Search Results Section */}
       <div
         className={`flex main-bottom bg-slate-200 text-white cointainer justify-center max-h-fit h-fit ${
           searchResults ? "min-h-full" : ""
@@ -177,6 +168,11 @@ export default function Home() {
           </>
         )}
       </div>
+      {/* Search Results Section End */}
+      {/* Main Content End */}
+      {/* Footer */}
+      <Footer />
+      {/* Footer End */}
     </div>
   );
 }
