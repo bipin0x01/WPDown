@@ -313,7 +313,7 @@ export default function Home() {
                         {/* Plugin Section Bottom End */}
 
                         {/* Plugin Download Section */}
-                        <div className="plugin-download-section items-center justify-center bg-white">
+                        <div className="plugin-download-section self-center items-center justify-center bg-white">
                           <Button
                             label="Download"
                             link={plugin.download_link}
