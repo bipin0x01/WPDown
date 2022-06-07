@@ -36,7 +36,7 @@ export default function Home() {
       searchResults
         ? toast.success("Search results found!")
         : toast.error("No search results found!");
-    }, 1000);
+    }, 5000);
   };
 
   const plugins = [
@@ -109,7 +109,8 @@ export default function Home() {
         <form
           onSubmit={handleSubmit}
           className={`fixed text-white bg-inherit xl:w-halfscreen sm:w-3/4 rounded-xl sm:h-screen/4 p-4  place-self-center flex-row transition transition-duration-400 ease-in auto  shadow-slate-400 ${
-            loading && "bg-white border-0 shadow-0 hover:shadow-0"
+            loading &&
+            "bg-smooth-blue border-0 shadow-0 hover:shadow-0 bg-inherit "
           }`}
         >
           {loading ? (
