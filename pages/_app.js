@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
