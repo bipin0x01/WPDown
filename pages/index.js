@@ -169,7 +169,7 @@ export default function Home() {
               {/* Results Section */}
               {/* Theme Section */}
               <>
-                <div className="theme-section w-full sm:p-0 p-4 border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 m-2 ">
+                <div className="theme-section w-full sm:p-0 p-4 border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 m-2 my-4 ">
                   {/* Theme Section Left */}
 
                   <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
@@ -184,14 +184,12 @@ export default function Home() {
                             theme_info.screenshot
                           }
                           alt="theme screenshot"
-                          className="w-full h-full"
                           height={350}
                           width={500}
                         />
                       </div>
                     </div>
                     {/* Theme Section Left End */}
-
                     {/* Theme Section Right */}
 
                     <div className="theme-section-right w-full ">
@@ -263,7 +261,7 @@ export default function Home() {
               </>
               {/* Horizontal Line */}
               {/* Plugin Container */}
-              <div className="plugin-container w-full sm:p-0 p-4 border-2 border-t-0 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 mx-2 ">
+              <div className="plugin-container w-full my-4 sm:p-0 p-4 border-2 border-t-0 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 mx-2 ">
                 {/* Plugins Section */}
                 <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
                   Plugin Details
@@ -314,7 +312,7 @@ export default function Home() {
                         {/* Plugin Section Bottom End */}
 
                         {/* Plugin Download Section */}
-                        <div className="plugin-download-section justify-center bg-white">
+                        <div className="plugin-download-section items-center justify-center bg-white">
                           <Button
                             label="Download"
                             link={plugin.download_link}
