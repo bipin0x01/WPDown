@@ -1,7 +1,7 @@
 import { Spinner } from "flowbite-react";
 import React from "react";
 
-export default function () {
+export default function Loader() {
   return (
     <div className="flex flex-row w-full h-full justify-center items-center">
       <button
