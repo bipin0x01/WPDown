@@ -6,6 +6,18 @@ import Loader from "../src/components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import Button from "../src/components/Button";
+
+// change value of search results to string
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await axios.post(`${process.env.API_URL}/theme/info`, {}`);
+//   const data = await res.json();
+
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,24 +25,17 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState(false);
 
   const handleSubmit = (e) => {
-    setSearchResults(false);
     e.preventDefault();
     setUrl(search_url);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
 
+      setSearchResults(true);
       // randomly toggle between true and false to simulate a search result
-      setSearchResults(Math.random() > 0.5);
-      if (!searchResults) {
-        toast.error(
-          "Wordpress Not Detected! The website you entered doesn't use wordpress!"
-        );
-      }
-
-      if (searchResults) {
-        toast.success("Wordpress Detected! Analyzing Data!");
-      }
+      searchResults
+        ? toast.success("Search results found!")
+        : toast.error("No search results found!");
     }, 1000);
   };
 
@@ -81,37 +86,38 @@ export default function Home() {
       <div className="main-top cointainer h-halfscreen ">
         <ToastContainer
           position="top-center"
-          autoClose={10000}
+          autoClose={1000}
           hideProgressBar={false}
-          newestOnTop={false}
+          newestOnTop={true}
           closeOnClick
           rtl={false}
           pauseOnFocusLoss
           draggable
           pauseOnHover
         />
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-full ">
           <h1 className="font-bold text-center font-im-fell m-auto">
-            <span className="text-8xl">WPDOWN</span>
+            <span className="sm:text-8xl text-5xl">WPDOWN</span>
             <br />
-            <span className="text-4xl">Watcha Theme!</span>
+            <span className="sm:text-4xl text-2xl">Watcha Theme!</span>
           </h1>
         </div>
       </div>
       <div
-        className={`z-0 flex main absolute inset-0 justify-center h-full w-full my-auto `}
+        className={`z-0 flex main absolute inset-0 justify-center h-full w-full my-auto`}
       >
         <form
           onSubmit={handleSubmit}
-          className="shadow-md fixed text-white bg-smooth-blue xl:w-halfscreen sm:w-3/4  sm:h-screen/4 p-4 rounded place-self-center flex-row  hover:shadow-md transition ease-in-out auto shadow-lg shadow-slate-400"
+          className={`fixed text-white bg-inherit xl:w-halfscreen sm:w-3/4 rounded-xl sm:h-screen/4 p-4  place-self-center flex-row transition transition-duration-400 ease-in auto  shadow-slate-400 ${
+            loading && "bg-white border-0 shadow-0 hover:shadow-0"
+          }`}
         >
           {loading ? (
             <Loader />
           ) : (
             <>
               {/* Search Area */}
-
-              <div className="search-area bg-smooth-blue flex flex-row justify-center h-full items-center">
+              <div className="search-area rounded-xl bg-smooth-blue flex flex-row justify-center h-full items-center">
                 {/* Search Box with Icon */}
 
                 <div
@@ -136,7 +142,7 @@ export default function Home() {
                 {/* Search Button */}
                 <div className="search-button w-auto ">
                   <button
-                    type="button"
+                    type="submit"
                     className="search-btn text-white mx-3 px-4 py-2 font-bold rounded-3xl border-2 border-white flex flex-row leading-tight uppercase hover:text-smooth-blue hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out items-center"
                   >
                     <div>
@@ -163,14 +169,14 @@ export default function Home() {
               {/* Results Section */}
               {/* Theme Section */}
               <>
-                <div className="theme-section border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 my-4 p-2 w-3/4">
+                <div className="theme-section w-full sm:p-0 p-4 border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 m-2 ">
                   {/* Theme Section Left */}
 
                   <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
                     Theme Details
                   </div>
-                  <theme className=" flex flex-col lg:flex-row">
-                    <div className="theme-section-left flex flex-row justify-center ">
+                  <theme className=" flex flex-col lg:flex-row items-center">
+                    <div className="theme-section-left flex flex-row justify-center">
                       <div className="theme-screenshot w-full p-2">
                         <Image
                           src={
@@ -189,7 +195,7 @@ export default function Home() {
                     {/* Theme Section Right */}
 
                     <div className="theme-section-right w-full ">
-                      <h3 className="ml-4 mt-4 text-left text-lg font-bold ">
+                      <h3 className="m-4 mt-4 text-left text-lg font-bold ">
                         <div className="theme-name mb-3">
                           Theme Name :{" "}
                           <span className="font-medium text-black ml-2">
@@ -212,13 +218,13 @@ export default function Home() {
                             </Link>
                           </span>
                         </div>
-                        <div className="theme-tags flex flex-row overflow-hidden">
+                        <div className="theme-tags whitespace-normal">
                           <div className="tags-group flex flex-row">
                             <div className="tag-title ">Tags: </div>
-                            <div className="tags-list ml-2 flex flex-row font-medium">
+                            <div className="tags-list ml-2 flex flex-wrap font-medium">
                               {theme_info.tags.map((tag, index) => (
                                 <div
-                                  className="text-sm hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
+                                  className="text-sm m-2 hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
                                   key={index}
                                 >
                                   <Link href="#">
@@ -230,11 +236,25 @@ export default function Home() {
                           </div>
                         </div>
                         {/* Download Button */}
-                        <div className="download-button flex flex-row mt-6">
-                          <button className="download-btn text-sm bg-smooth-blue text-white font-bold hover:text-smooth-blue hover:bg-white mx-2 px-4 py-2 rounded-3xl border-2 border-black flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                            <span>Download</span>
-                          </button>
-                        </div>
+                        {theme_download.status === "success" ? (
+                          // Download Button
+                          <>
+                            <div className="download-button flex flex-row mt-6">
+                              <Button
+                                label="Download"
+                                link={theme_download.url}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="download-button flex flex-row mt-6">
+                              <div className="text-md text-red-500">
+                                {theme_download.message}
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </h3>
                     </div>
                     {/* Theme Section Right End */}
@@ -243,7 +263,7 @@ export default function Home() {
               </>
               {/* Horizontal Line */}
               {/* Plugin Container */}
-              <div className="plugin-container border-2 shadow-lg shadow-slate-200 hover:shadow-md transition ease-in-out auto  my-4 p-2 w-3/4">
+              <div className="plugin-container w-full sm:p-0 p-4 border-2 border-t-0 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 mx-2 ">
                 {/* Plugins Section */}
                 <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
                   Plugin Details
@@ -252,14 +272,12 @@ export default function Home() {
                   <>
                     <plugin className="flex flex-row justify-center w-full">
                       {/* Plugin Numbering */}
-                      <div className="plugin-numbering  p-4 flex flex-row text-xl font-bold items-center">
-                        {index + 1}
-                      </div>
-                      <div className="plugins-section flex flex-col sm:flex-row ">
+
+                      <div className="plugins-section flex flex-col p-2 sm:flex-row  ">
                         {/* Plugin Section Top */}
 
-                        <div className="plugin-section-top justify-center flex flex-col">
-                          <div className="plugin-banner  h-fit">
+                        <div className="plugin-section-top  justify-center flex flex-col">
+                          <div className="plugin-banner relative h-fit">
                             <Image
                               src={
                                 "https://res.cloudinary.com/kaji/image/fetch/" +
@@ -296,24 +314,11 @@ export default function Home() {
                         {/* Plugin Section Bottom End */}
 
                         {/* Plugin Download Section */}
-                        <div className="plugin-download-section flex flex-col justify-center bg-white">
-                          <div className="download-button ">
-                            <button
-                              type="button"
-                              className="download-btn relative text-sm bg-smooth-blue text-white font-bold p-5 m-5 rounded-3xl flex flex-row leading-tight uppercase  focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                            >
-                              <Link href={plugin.download_link}>
-                                <a className="hover:text-smooth-blue">
-                                  <Image
-                                    src="/assets/img/icons/download_icon.svg"
-                                    layout="fill"
-                                    alt="download icon"
-                                    className="w-5 h-5 bg-white rounded-full"
-                                  />
-                                </a>
-                              </Link>
-                            </button>
-                          </div>
+                        <div className="plugin-download-section justify-center bg-white">
+                          <Button
+                            label="Download"
+                            link={plugin.download_link}
+                          />
                         </div>
                       </div>
                     </plugin>
