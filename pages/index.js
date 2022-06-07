@@ -272,10 +272,10 @@ export default function Home() {
                     <plugin className="flex flex-row justify-center w-full">
                       {/* Plugin Numbering */}
 
-                      <div className="plugins-section flex flex-col p-2 sm:flex-row  ">
+                      <div className="plugins-section flex flex-col p-2 lg:flex-row  ">
                         {/* Plugin Section Top */}
 
-                        <div className="plugin-section-top  justify-center flex flex-col">
+                        <div className="plugin-section-top  justify-center flex flex-col items-center">
                           <div className="plugin-banner relative h-fit">
                             <Image
                               src={
@@ -313,7 +313,7 @@ export default function Home() {
                         {/* Plugin Section Bottom End */}
 
                         {/* Plugin Download Section */}
-                        <div className="plugin-download-section self-center items-center justify-center bg-white">
+                        <div className="plugin-download-section self-left lg:self-center items-center justify-center bg-white">
                           <Button
                             label="Download"
                             link={plugin.download_link}
