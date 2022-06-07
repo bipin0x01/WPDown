@@ -1,12 +1,11 @@
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loader from "../src/components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import Button from "../src/components/Button";
+import PluginSection from "../src/components/Main/PluginSection";
+import ThemeSection from "../src/components/Main/ThemeSection";
 
 // change value of search results to string
 // export async function getServerSideProps() {
@@ -73,6 +72,7 @@ export default function Home() {
     tags: ["one-column", "two-columns", "rtl-language-support", "sticky-post"],
   };
 
+  const theme = { theme_info, theme_download };
   return (
     <div className="relative h-screen w-screen min-h-screen overflow-x-auto transition-duration-300 ease-in">
       <Head>
@@ -118,7 +118,7 @@ export default function Home() {
           ) : (
             <>
               {/* Search Area */}
-              <div className="search-area rounded-xl bg-smooth-blue flex flex-row justify-center h-full items-center">
+              <div className="search-area py-2 px-4 rounded-xl bg-smooth-blue flex flex-row justify-center h-full items-center">
                 {/* Search Box with Icon */}
 
                 <div
@@ -169,166 +169,9 @@ export default function Home() {
             <div className="z-40 flex flex-col container bg-white text-smooth-blue shadow-xl shadow-slate-300 items-center mt-40 p-10">
               {/* Results Section */}
               {/* Theme Section */}
-              <>
-                <div className="theme-section w-full sm:p-0 p-4 border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 m-2 my-4 ">
-                  {/* Theme Section Left */}
-
-                  <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
-                    Theme Details
-                  </div>
-                  <theme className=" flex flex-col lg:flex-row items-center">
-                    <div className="theme-section-left flex flex-row justify-center">
-                      <div className="theme-screenshot w-full p-2">
-                        <Image
-                          src={
-                            "https://res.cloudinary.com/kaji/image/fetch/" +
-                            theme_info.screenshot
-                          }
-                          alt="theme screenshot"
-                          height={350}
-                          width={500}
-                        />
-                      </div>
-                    </div>
-                    {/* Theme Section Left End */}
-                    {/* Theme Section Right */}
-
-                    <div className="theme-section-right w-full ">
-                      <h3 className="m-4 mt-4 text-left text-lg font-bold ">
-                        <div className="theme-name mb-3">
-                          Theme Name :{" "}
-                          <span className="font-medium text-black ml-2">
-                            {theme_info.theme}
-                          </span>
-                        </div>
-                        <div className="theme-version mb-3">
-                          version:{" "}
-                          <span className="font-medium text-black ml-2">
-                            {theme_info.version}
-                          </span>
-                        </div>
-                        <div className="theme-author mb-3">
-                          Author:{" "}
-                          <span className="font-medium text-black ml-2">
-                            <Link href={theme_info.authorLink}>
-                              <a className="hover:text-smooth-blue">
-                                {theme_info.author}
-                              </a>
-                            </Link>
-                          </span>
-                        </div>
-                        <div className="theme-tags whitespace-normal">
-                          <div className="tags-group flex flex-row">
-                            <div className="tag-title ">Tags: </div>
-                            <div className="tags-list ml-2 flex flex-wrap font-medium">
-                              {theme_info.tags.map((tag, index) => (
-                                <div
-                                  className="text-sm m-2 hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
-                                  key={index}
-                                >
-                                  <Link href="#">
-                                    <a className="p-1 my-1">{tag}</a>
-                                  </Link>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                        {/* Download Button */}
-                        {theme_download.status === "success" ? (
-                          // Download Button
-                          <>
-                            <div className="download-button flex flex-row mt-6">
-                              <Button
-                                label="Download"
-                                link={theme_download.url}
-                              />
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="download-button flex flex-row mt-6">
-                              <div className="text-md text-red-500">
-                                {theme_download.message}
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </h3>
-                    </div>
-                    {/* Theme Section Right End */}
-                  </theme>
-                </div>
-              </>
-              {/* Horizontal Line */}
+              <ThemeSection theme={theme} />
               {/* Plugin Container */}
-              <div className="plugin-container w-full my-4 sm:p-0 p-4 border-2 border-t-0 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 mx-2 ">
-                {/* Plugins Section */}
-                <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
-                  Plugin Details
-                </div>
-                {plugins.map((plugin, index) => (
-                  <>
-                    <plugin className="flex flex-row justify-center w-full">
-                      {/* Plugin Numbering */}
-
-                      <div className="plugins-section flex flex-col p-2 lg:flex-row  ">
-                        {/* Plugin Section Top */}
-
-                        <div className="plugin-section-top  justify-center flex flex-col items-center">
-                          <div className="plugin-banner relative h-fit">
-                            <Image
-                              src={
-                                "https://res.cloudinary.com/kaji/image/fetch/" +
-                                plugin.banner
-                              }
-                              alt="plugin-banner"
-                              className="w-full h-full"
-                              height={150}
-                              width={600}
-                              responsive={true}
-                            />
-                          </div>
-                        </div>
-                        {/* Plugin Section Top End */}
-
-                        {/* Plugin Section Bottom */}
-
-                        <div className="plugin-section-bottom w-full">
-                          <h3 className="m-4 text-left text-lg font-bold ">
-                            <div className="plugin-name mb-3">
-                              Plugin Name :{" "}
-                              <span className="font-medium text-black ml-2">
-                                {plugin.plugin_name}
-                              </span>
-                            </div>
-                            <div className="theme-version">
-                              Description:{" "}
-                              <span className="font-medium text-black ml-2">
-                                {plugin.desc}
-                              </span>
-                            </div>
-                          </h3>
-                        </div>
-                        {/* Plugin Section Bottom End */}
-
-                        {/* Plugin Download Section */}
-                        <div className="plugin-download-section self-left lg:self-center items-center justify-center bg-white">
-                          <Button
-                            label="Download"
-                            link={plugin.download_link}
-                          />
-                        </div>
-                      </div>
-                    </plugin>
-                    {/* Don't show line at last */}
-                    {index !== plugins.length - 1 && (
-                      <div className="border border-2 bg-black mx-4"></div>
-                    )}
-                  </>
-                ))}
-                {/* Plugins Section End */}
-              </div>
+              <PluginSection plugins={plugins} />
               {/* Plugin Container End */}
             </div>
           </>
