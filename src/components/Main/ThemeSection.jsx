@@ -11,7 +11,7 @@ export default function ThemeSection({ theme }) {
       <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
         Theme Details
       </div>
-      <theme className=" flex flex-col lg:flex-row items-center">
+      <theme className=" flex flex-col md:flex-row items-center">
         <div className="theme-section-left flex flex-row justify-center">
           <div className="theme-screenshot w-full p-2">
             <Image

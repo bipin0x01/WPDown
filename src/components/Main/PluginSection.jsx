@@ -14,7 +14,7 @@ export default function PluginSection({ plugins }) {
           <section className="flex flex-row justify-center w-full">
             {/* Plugin Numbering */}
 
-            <div className="plugins-section flex flex-col p-2 lg:flex-row  ">
+            <div className="plugins-section flex flex-col p-2 md:flex-row  ">
               {/* Plugin Section Top */}
 
               <div className="plugin-section-top  justify-center flex flex-col items-center">
