@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Button from "../Button";
 
-export default function ThemeSection({ theme }) {
+export default function ThemeSection({ themeDetails, themeDownload }) {
   return (
     <div className="theme-section w-full sm:p-0 p-4 border-2 shadow-lg hover:shadow-md transition ease-in-out auto shadow-slate-200 m-2 my-4 ">
       {/* Theme Section Left */}
@@ -17,7 +17,7 @@ export default function ThemeSection({ theme }) {
             <Image
               src={
                 "https://res.cloudinary.com/kaji/image/fetch/" +
-                theme.theme_info.screenshot
+                themeDetails.screenshot
               }
               alt="theme screenshot"
               height={350}
@@ -33,21 +33,21 @@ export default function ThemeSection({ theme }) {
             <div className="theme-name mb-3">
               Theme Name :{" "}
               <span className="font-normal text-black ml-2">
-                {theme.theme_info.theme}
+                {themeDetails.theme}
               </span>
             </div>
             <div className="theme-version mb-3">
               version:{" "}
               <span className="font-normal text-black ml-2">
-                {theme.theme_info.version}
+                {themeDetails.version}
               </span>
             </div>
             <div className="theme-author mb-3">
               Author:{" "}
               <span className="font-normal text-black ml-2">
-                <Link href={theme.theme_info.authorLink}>
+                <Link href={themeDetails.authorLink}>
                   <a className="hover:text-smooth-blue">
-                    {theme.theme_info.author}
+                    {themeDetails.author}
                   </a>
                 </Link>
               </span>
@@ -56,7 +56,7 @@ export default function ThemeSection({ theme }) {
               <div className="tags-group flex flex-row">
                 <div className="tag-title ">Tags: </div>
                 <div className="tags-list ml-2 flex flex-wrap font-medium">
-                  {theme.theme_info.tags.map((tag, index) => (
+                  {themeDetails.tags.map((tag, index) => (
                     <div
                       className="text-sm m-2 hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
                       key={index}
@@ -70,18 +70,18 @@ export default function ThemeSection({ theme }) {
               </div>
             </div>
             {/* Download Button */}
-            {theme.theme_download.status === "success" ? (
+            {themeDownload?.status === "success" ? (
               // Download Button
               <>
                 <div className="download-button flex flex-row p-2 pl-0">
-                  <Button label="Download" link={theme.theme_download.url} />
+                  <Button label="Download" link={themeDownload?.url} />
                 </div>
               </>
             ) : (
               <>
                 <div className="download-button flex flex-row mt-6">
                   <div className="text-md text-red-500">
-                    {theme.theme_download.message}
+                    {themeDownload?.message}
                   </div>
                 </div>
               </>

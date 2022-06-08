@@ -10,8 +10,8 @@ export default function PluginSection({ plugins }) {
         Plugin Details
       </div>
       {plugins.map((plugin, index) => (
-        <>
-          <section className="flex flex-row justify-center w-full">
+        <section key={index}>
+          <div className="flex flex-row justify-center w-full">
             {/* Plugin Numbering */}
 
             <div className="plugins-section flex flex-col p-2 md:flex-row gap-2 ">
@@ -28,7 +28,7 @@ export default function PluginSection({ plugins }) {
                     className="w-full h-full"
                     height={150}
                     width={600}
-                    responsive={true}
+                    responsive="true"
                   />
                 </div>
               </div>
@@ -59,12 +59,12 @@ export default function PluginSection({ plugins }) {
                 <Button label="Download" link={plugin.download_link} />
               </div>
             </div>
-          </section>
+          </div>
           {/* Don't show line at last */}
           {index !== plugins.length - 1 && (
             <div className="border border-2 bg-gray-200 m-2 "></div>
           )}
-        </>
+        </section>
       ))}
       {/* Plugins Section End */}
     </div>

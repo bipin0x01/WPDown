@@ -1,80 +1,46 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../src/components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
+// import fake data
+import fakeData from "../src/fakeData";
+
 // Components Import
 import PluginSection from "../src/components/Main/PluginSection";
 import ThemeSection from "../src/components/Main/ThemeSection";
 
-// change value of search results to string
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await axios.post(`${process.env.API_URL}/theme/info`, {}`);
-//   const data = await res.json();
-
-//   // Pass data to the page via props
-//   return { props: { data } };
-// }
+// import Services
+// import { getWebsiteData } from "../src/services/getWebsiteData";
 
 export default function Home() {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("http://gia.edu.np");
   const [loading, setLoading] = useState(false);
-  const [search_url, setSearchUrl] = useState("");
-  const [searchResults, setSearchResults] = useState(false);
-
+  const [webData, setWebData] = useState(fakeData);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUrl(search_url);
     setLoading(true);
     setTimeout(() => {
-      setLoading(false);
-
-      setSearchResults(true);
-      // randomly toggle between true and false to simulate a search result
-      searchResults
-        ? toast.success("Search results found!")
-        : toast.error("Sorry! The site doesn't seem to use Wordpress.");
-    }, 5000);
+      if (Math.random() > 0.5) {
+        setWebData(fakeData);
+        setLoading(false);
+        toast.success("Website Data Loaded Successfully for URL:" + url);
+      } else {
+        setWebData(null);
+        setLoading(false);
+        toast.error("Website Data Loading Failed for URL: " + url);
+      }
+    }, 2000);
   };
 
-  const plugins = [
-    {
-      plugin_name: "Contact Form 7",
-      desc: "Contact Form 7 can manage multiple contact forms, plus you can customize the form and the mail contents flexibly with simple markup.",
-      banner: "https://ps.w.org/contact-form-7/assets/banner-772x250.png",
-      download_link:
-        "https://downloads.wordpress.org/plugin/contact-form-7.5.5.6.1.zip",
-    },
-    {
-      plugin_name: "Hide Admin Bar Based on User Roles",
-      desc: "This plugin is very useful to hide admin bar based on selected user roles and user capabilities.",
-      banner:
-        "https://ps.w.org/hide-admin-bar-based-on-user-roles/assets/banner-772x250.png",
-      download_link:
-        "https://downloads.wordpress.org/plugin/hide-admin-bar-based-on-user-roles.3.2.zip",
-    },
-  ];
+  // Set the results to null for initial
+  useEffect(() => {
+    setWebData(null);
+  }, []);
 
-  const theme_download = {
-    status: "success",
-    message: "Theme found!",
-    url: "http://gia.edu.np/wp-content/themes/gurukuldang.zip",
-  };
-
-  const theme_info = {
-    theme: "EDU Theme Gurukul Academy",
-    version: "1.0",
-    screenshot:
-      "http://gia.edu.np/wp-content/themes/gurukuldang/screenshot.png",
-    author: "Tech Care",
-    authorLink: "http://cuidadotechnology.com/",
-    tags: ["one-column", "two-columns", "rtl-language-support", "sticky-post"],
-  };
-
-  const theme = { theme_info, theme_download };
+  // get value from current state of url
   return (
     <div className="relative h-screen w-screen min-h-screen overflow-x-auto transition-duration-300 ease-in">
       <Head>
@@ -138,7 +104,8 @@ export default function Home() {
                       type="text"
                       placeholder="https://"
                       id="search-input"
-                      onChange={(e) => setSearchUrl(e.target.value)}
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
                       required
                       autoComplete="off"
                     />
@@ -167,17 +134,20 @@ export default function Home() {
       {/* Search Results Section */}
       <div
         className={`flex main-bottom bg-slate-200 text-white cointainer justify-center max-h-fit h-fit ${
-          searchResults ? "min-h-full" : ""
+          webData ? "min-h-full" : ""
         }`}
       >
-        {searchResults && (
+        {webData && (
           <>
             <div className="z-40 flex flex-col container bg-white text-smooth-blue shadow-xl shadow-slate-300 items-center mt-40 p-10">
               {/* Results Section */}
               {/* Theme Section */}
-              <ThemeSection theme={theme} />
+              <ThemeSection
+                themeDetails={webData.themeDetails}
+                themeDownload={webData.themeDownload}
+              />
               {/* Plugin Container */}
-              <PluginSection plugins={plugins} />
+              <PluginSection plugins={webData.plugins} />
               {/* Plugin Container End */}
             </div>
           </>
