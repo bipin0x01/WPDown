@@ -11,13 +11,13 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
       <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
         Theme Details
       </div>
-      <theme className=" flex flex-col md:flex-row items-center gap-2">
+      <section className=" flex flex-col md:flex-row items-center gap-2">
         <div className="theme-section-left flex flex-row justify-center">
           <div className="theme-screenshot w-full p-2">
             <Image
               src={
                 "https://res.cloudinary.com/kaji/image/fetch/" +
-                themeDetails.screenshot
+                themeDetails?.screenshot
               }
               alt="theme screenshot"
               height={350}
@@ -33,30 +33,32 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
             <div className="theme-name mb-3">
               Theme Name :{" "}
               <span className="font-normal text-black ml-2">
-                {themeDetails.theme}
+                {themeDetails?.theme}
               </span>
             </div>
             <div className="theme-version mb-3">
               version:{" "}
               <span className="font-normal text-black ml-2">
-                {themeDetails.version}
+                {themeDetails?.version}
               </span>
             </div>
-            <div className="theme-author mb-3">
-              Author:{" "}
-              <span className="font-normal text-black ml-2">
-                <Link href={themeDetails.authorLink}>
-                  <a className="hover:text-smooth-blue">
-                    {themeDetails.author}
-                  </a>
-                </Link>
-              </span>
-            </div>
+            {themeDetails?.author && (
+              <div className="theme-author mb-3">
+                Author:{" "}
+                <span className="font-normal text-black ml-2">
+                  <Link href={themeDetails?.authorLink}>
+                    <a className="hover:text-smooth-blue">
+                      {themeDetails?.author}
+                    </a>
+                  </Link>
+                </span>
+              </div>
+            )}
             <div className="theme-tags whitespace-normal">
               <div className="tags-group flex flex-row">
                 <div className="tag-title ">Tags: </div>
                 <div className="tags-list ml-2 flex flex-wrap font-medium">
-                  {themeDetails.tags.map((tag, index) => (
+                  {themeDetails?.tags?.map((tag, index) => (
                     <div
                       className="text-sm m-2 hover:border-2 hover:bg-smooth-blue hover:text-white tag mx-1 mt-1 px-1 rounded-xl min-w-fit border-2 border-smooth-blue"
                       key={index}
@@ -81,7 +83,7 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
               <>
                 <div className="download-button flex flex-row mt-6">
                   <div className="text-md text-red-500">
-                    {themeDownload?.message}
+                    Exposed Theme File Not Found! Download Unavailable.
                   </div>
                 </div>
               </>
@@ -89,7 +91,7 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
           </h3>
         </div>
         {/* Theme Section Right End */}
-      </theme>
+      </section>
     </div>
   );
 }

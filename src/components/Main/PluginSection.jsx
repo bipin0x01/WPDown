@@ -41,13 +41,13 @@ export default function PluginSection({ plugins }) {
                   <div className="plugin-name mb-3">
                     Plugin Name :{" "}
                     <span className="font-normal text-black ml-2">
-                      {plugin.plugin_name}
+                      {plugin?.plugin_name}
                     </span>
                   </div>
                   <div className="theme-version">
                     Description:{" "}
                     <span className="font-normal text-black ml-2">
-                      {plugin.desc}
+                      {plugin?.desc}
                     </span>
                   </div>
                 </h3>
@@ -56,12 +56,12 @@ export default function PluginSection({ plugins }) {
 
               {/* Plugin Download Section */}
               <div className="plugin-download-section m-2 p-2 self-left lg:self-center items-center justify-center bg-white">
-                <Button label="Download" link={plugin.download_link} />
+                <Button label="Download" link={plugin?.download_link} />
               </div>
             </div>
           </div>
           {/* Don't show line at last */}
-          {index !== plugins.length - 1 && (
+          {index !== plugins?.length - 1 && (
             <div className="border border-2 bg-gray-200 m-2 "></div>
           )}
         </section>

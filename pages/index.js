@@ -12,27 +12,45 @@ import fakeData from "../src/fakeData";
 import PluginSection from "../src/components/Main/PluginSection";
 import ThemeSection from "../src/components/Main/ThemeSection";
 
-// import Services
-// import { getWebsiteData } from "../src/services/getWebsiteData";
+// Services
+import { getWebsiteData } from "../src/services/getWebsiteData";
+
+// Get url and convert it to https version
+const correctedUrl = (url) => {
+  if (url.includes("http://")) {
+    return url.replace("http://", "https://");
+  } else if (url.includes("https://")) {
+    return url;
+  } else {
+    return `https://${url}`;
+  }
+};
 
 export default function Home() {
-  const [url, setUrl] = useState("http://gia.edu.np");
+  const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const [webData, setWebData] = useState(fakeData);
-  const handleSubmit = (e) => {
+  const [webData, setWebData] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      if (Math.random() > 0.5) {
-        setWebData(fakeData);
-        setLoading(false);
-        toast.success("Website Data Loaded Successfully for URL:" + url);
-      } else {
-        setWebData(null);
-        setLoading(false);
-        toast.error("Website Data Loading Failed for URL: " + url);
-      }
-    }, 2000);
+    const Validurl = correctedUrl(url);
+    const data = await getWebsiteData(Validurl);
+    if (data) {
+      setWebData(data);
+      setLoading(false);
+      toast.success("Website Data Fetched Successfully");
+    } else {
+      setWebData(null);
+      setLoading(false);
+      toast.error(
+        "Sorry! The website you entered doesnot seem to be using wordpress."
+      );
+      // 2 sec delay
+      setTimeout(() => {
+        toast.info("Please check the URL and try again.");
+      }, 1500);
+    }
   };
 
   // Set the results to null for initial
