@@ -102,7 +102,7 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
             <div className="theme-info w-full p-2">
               <div className="theme-name mb-3 text-lg text-center">
                 <h2>
-                  Sorry! We couldn't find any theme data for this theme. Please
+                  Sorry! We could not find any theme data for this theme. Please
                   try again later.
                 </h2>
               </div>
