@@ -11,7 +11,7 @@ export default function ThemeSection({ theme }) {
       <div className=" results-title m-2 p-2 px-4 text-white font-left bg-smooth-blue font-bold text-xl ">
         Theme Details
       </div>
-      <theme className=" flex flex-col md:flex-row items-center">
+      <theme className=" flex flex-col md:flex-row items-center gap-2">
         <div className="theme-section-left flex flex-row justify-center">
           <div className="theme-screenshot w-full p-2">
             <Image
@@ -28,8 +28,8 @@ export default function ThemeSection({ theme }) {
         {/* Theme Section Left End */}
         {/* Theme Section Right */}
 
-        <div className="theme-section-right w-full ">
-          <h3 className="m-4 mt-4 text-left text-lg font-bold ">
+        <div className="theme-section-right w-full p-2">
+          <h3 className="m-4 text-left text-lg font-bold ">
             <div className="theme-name mb-3">
               Theme Name :{" "}
               <span className="font-normal text-black ml-2">
@@ -73,7 +73,7 @@ export default function ThemeSection({ theme }) {
             {theme.theme_download.status === "success" ? (
               // Download Button
               <>
-                <div className="download-button flex flex-row mt-6">
+                <div className="download-button flex flex-row p-2 pl-0">
                   <Button label="Download" link={theme.theme_download.url} />
                 </div>
               </>

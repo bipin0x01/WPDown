@@ -1,15 +1,13 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loader from "../src/components/Loader";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
 // Components Import
 import PluginSection from "../src/components/Main/PluginSection";
 import ThemeSection from "../src/components/Main/ThemeSection";
-import Header from "../src/components/Main/Header";
-import Footer from "../src/components/Main/Footer";
 
 // change value of search results to string
 // export async function getServerSideProps() {
@@ -38,7 +36,7 @@ export default function Home() {
       // randomly toggle between true and false to simulate a search result
       searchResults
         ? toast.success("Search results found!")
-        : toast.error("No search results found!");
+        : toast.error("Sorry! The site doesn't seem to use Wordpress.");
     }, 5000);
   };
 
@@ -88,7 +86,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Header */}
-      <Header />
+      <div className="main-top cointainer h-halfscreen ">
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <div className="flex flex-col justify-center h-full ">
+          <h1 className="font-bold text-center font-im-fell m-auto">
+            <span className="sm:text-8xl text-5xl">WPDOWN</span>
+            <br />
+            <span className="sm:text-4xl text-2xl">Watcha Theme!</span>
+          </h1>
+        </div>
+      </div>
       {/* Header End */}
       {/* Main Content */}
       {/* Search Section */}
@@ -121,10 +138,8 @@ export default function Home() {
                       type="text"
                       placeholder="https://"
                       id="search-input"
-                      pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
-                      onSubmit={(e) => {
-                        setSearchUrl(e.target.value);
-                      }}
+                      onChange={(e) => setSearchUrl(e.target.value)}
+                      required
                       autoComplete="off"
                     />
                   </div>
@@ -170,9 +185,6 @@ export default function Home() {
       </div>
       {/* Search Results Section End */}
       {/* Main Content End */}
-      {/* Footer */}
-      <Footer />
-      {/* Footer End */}
     </div>
   );
 }

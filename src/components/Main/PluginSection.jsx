@@ -14,7 +14,7 @@ export default function PluginSection({ plugins }) {
           <section className="flex flex-row justify-center w-full">
             {/* Plugin Numbering */}
 
-            <div className="plugins-section flex flex-col p-2 md:flex-row  ">
+            <div className="plugins-section flex flex-col p-2 md:flex-row gap-2 ">
               {/* Plugin Section Top */}
 
               <div className="plugin-section-top  justify-center flex flex-col items-center">
@@ -55,7 +55,7 @@ export default function PluginSection({ plugins }) {
               {/* Plugin Section Bottom End */}
 
               {/* Plugin Download Section */}
-              <div className="plugin-download-section mb-4 px-4 self-left lg:self-center items-center justify-center bg-white">
+              <div className="plugin-download-section m-2 p-2 self-left lg:self-center items-center justify-center bg-white">
                 <Button label="Download" link={plugin.download_link} />
               </div>
             </div>
