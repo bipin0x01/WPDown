@@ -33,7 +33,6 @@ export default function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitted(true)
-        console.log('form submitted with url: ', url)
     }
 
     // Set the results to null for initial
@@ -60,7 +59,7 @@ export default function Home() {
                     )
                     // 2 sec delay
                     setTimeout(() => {
-                        toast.info('Please check the URL and try again.')
+                        toast.error('Please check the URL and try again.')
                     }, 1500)
                 }
             }

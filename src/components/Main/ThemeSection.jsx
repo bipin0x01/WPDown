@@ -49,9 +49,9 @@ export default function ThemeSection({ themeDetails, themeDownload }) {
                                 <div className="theme-author mb-3">
                                     Author:{' '}
                                     <span className="font-normal text-black ml-2">
-                                        <Link href={themeDetails?.authorLink}>
+                                        <Link href={themeDetails.authorLink?themeDetails.authorLink:"#"}>
                                             <a className="hover:text-smooth-blue">
-                                                {themeDetails?.author}
+                                                {themeDetails.author?themeDetails.author:""}
                                             </a>
                                         </Link>
                                     </span>

@@ -71,7 +71,7 @@ export default function PluginSection({ plugins }) {
                             <div className={style.downloadBtnSection}>
                                 <Button
                                     label="Download"
-                                    link={plugin?.download_link}
+                                    link={plugin.download_link?plugin.download_link:"#"}
                                 />
                             </div>
                         </div>
