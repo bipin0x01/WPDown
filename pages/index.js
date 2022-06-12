@@ -1,12 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Loader from '../src/components/Loader'
-import { ToastContainer, toast } from 'react-toastify'
 
-import 'react-toastify/dist/ReactToastify.css'
-
-// import fake data
-import fakeData from '../src/fakeData'
 
 // Components Import
 import PluginSection from '../src/components/Main/PluginSection'
@@ -14,6 +9,9 @@ import ThemeSection from '../src/components/Main/ThemeSection'
 
 // Services
 import { getWebsiteData } from '../src/services/getWebsiteData'
+
+// Toast 
+import { Toaster,toast } from 'react-hot-toast'
 
 // Get url and convert it to https version
 const correctedUrl = (url) => {
@@ -84,16 +82,8 @@ export default function Home() {
             </Head>
             {/* Header */}
             <div className="main-top cointainer h-halfscreen ">
-                <ToastContainer
+                <Toaster
                     position="top-center"
-                    autoClose={1000}
-                    hideProgressBar={false}
-                    newestOnTop={true}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
                 />
                 <div className="flex flex-col justify-center h-full ">
                     <h1 className="font-bold text-center font-im-fell m-auto">
