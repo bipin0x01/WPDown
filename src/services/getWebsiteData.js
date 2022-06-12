@@ -1,6 +1,6 @@
 // import fetch from "fetch";
 
-const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
+const baseUrl = `/api`
 
 const getThemeInfo = async (formData) => {
     // convert object to json
